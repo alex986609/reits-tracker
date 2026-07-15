@@ -1,34 +1,27 @@
 name: Update REITs Data
-
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天北京时间10点
-  workflow_dispatch:       # 手动触发
-
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 permissions:
-  contents: write          # 允许推送更新
-
+  contents: write
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install Playwright
         run: |
           pip install playwright
           python -m playwright install chromium --with-deps
-
       - name: Generate HTML
         run: python generate.py
-
       - name: Commit and Push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html data.json
-          git diff --staged --quiet || (git commit -m "Auto update REITs data $(date +%Y-%m-%d)" && git push)
+          git diff --staged --quiet || (git commit -m "Auto update $(date +%Y-%m-%d)" && git push)
