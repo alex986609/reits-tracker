@@ -932,7 +932,183 @@
       "reportRecommendTime": "2020-12-30 00:00:00"
     }
   ],
-  "sse": [],
+  "sse": [
+    {
+      "name": "1",
+      "applyType": "东方红申能股份新能源封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-07-13",
+      "acceptDate": "2026-07-13"
+    },
+    {
+      "name": "2",
+      "applyType": "中信建投广州发展清洁能源封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-07-10",
+      "acceptDate": "2026-06-11"
+    },
+    {
+      "name": "3",
+      "applyType": "国泰海通中国建筑租赁住房封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-06-30",
+      "acceptDate": "2026-04-17"
+    },
+    {
+      "name": "4",
+      "applyType": "博时山东铁投路桥封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-06-29",
+      "acceptDate": "2025-12-19"
+    },
+    {
+      "name": "5",
+      "applyType": "国泰海通崇邦封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-06-26",
+      "acceptDate": "2026-02-12"
+    },
+    {
+      "name": "6",
+      "applyType": "华泰三峡清洁能源封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-06-10",
+      "acceptDate": "2025-12-26"
+    },
+    {
+      "name": "7",
+      "applyType": "长城华能燃煤发电封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-06-09",
+      "acceptDate": "2026-05-12"
+    },
+    {
+      "name": "8",
+      "applyType": "红土创新茂业封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-27",
+      "acceptDate": "2026-05-06"
+    },
+    {
+      "name": "9",
+      "applyType": "中金开元旅业封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-22",
+      "acceptDate": "2026-04-30"
+    },
+    {
+      "name": "10",
+      "applyType": "华夏凯德封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-14",
+      "acceptDate": "2026-01-30"
+    },
+    {
+      "name": "11",
+      "applyType": "华夏保利发展封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-14",
+      "acceptDate": "2026-01-30"
+    },
+    {
+      "name": "12",
+      "applyType": "华安陆家嘴封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-14",
+      "acceptDate": "2026-01-30"
+    },
+    {
+      "name": "13",
+      "applyType": "光大保德信光大安石封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-14",
+      "acceptDate": "2026-02-05"
+    },
+    {
+      "name": "14",
+      "applyType": "华安锦江封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-05-14",
+      "acceptDate": "2026-01-29"
+    },
+    {
+      "name": "15",
+      "applyType": "国联安复星封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-04-27",
+      "acceptDate": "2026-03-30"
+    },
+    {
+      "name": "16",
+      "applyType": "汇添富上海地产封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-04-23",
+      "acceptDate": "2026-01-29"
+    },
+    {
+      "name": "17",
+      "applyType": "中金唯品会封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-04-23",
+      "acceptDate": "2026-01-29"
+    },
+    {
+      "name": "18",
+      "applyType": "国泰海通砂之船封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-04-23",
+      "acceptDate": "2026-01-30"
+    },
+    {
+      "name": "19",
+      "applyType": "中信建投首农食品集团封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-04-23",
+      "acceptDate": "2026-02-12"
+    },
+    {
+      "name": "20",
+      "applyType": "华夏湖北交投楚天高速公路封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-04-14",
+      "acceptDate": "2025-08-22"
+    },
+    {
+      "name": "21",
+      "applyType": "建信天津临港发展集团港口封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-03-30",
+      "acceptDate": "2026-03-02"
+    },
+    {
+      "name": "22",
+      "applyType": "国金嘉泽新能源封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-03-30",
+      "acceptDate": "2026-03-02"
+    },
+    {
+      "name": "23",
+      "applyType": "中航中核汇能新能源封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-03-30",
+      "acceptDate": "2025-11-25"
+    },
+    {
+      "name": "24",
+      "applyType": "易方达广西北投高速公路封闭式基础设施证券投资基金",
+      "status": "基础设施",
+      "updateDate": "2026-03-30",
+      "acceptDate": "2025-11-04"
+    },
+    {
+      "name": "25",
+      "applyType": "广发新城吾悦封闭式商业不动产证券投资基金",
+      "status": "商业不动产",
+      "updateDate": "2026-03-25",
+      "acceptDate": "2026-03-06"
+    }
+  ],
   "szse_ipo": [
     {
       "name": "招商资管招商蛇口封闭式商业不动产证券投资基金",
