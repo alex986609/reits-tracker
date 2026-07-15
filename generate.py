@@ -38,7 +38,7 @@ def fetch_szse(biztypsb):
              'acceptDate': item.get('acptdt','') or ''} for item in data['data']]
 
 def fetch_sse():
-    """上交所 REITs 项目动态 - Playwright 直接从 DOM 提取"""
+    """上交所 REITs 项目动态 - Playwright 分页抓取"""
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -52,66 +52,41 @@ def fetch_sse():
         
         try:
             page.goto('https://www.sse.com.cn/reits/info/', wait_until='networkidle', timeout=30000)
-            page.wait_for_timeout(3000)  # 等 JS 渲染完
+            page.wait_for_timeout(3000)
             
-            # 直接从 table DOM 提取所有行
-            rows = page.evaluate('''() => {
-                const table = document.querySelector('table');
-                if (!table) return [];
-                const headers = [];
-                table.querySelectorAll('thead th').forEach(th => headers.push(th.textContent.trim()));
-                const rows = [];
-                table.querySelectorAll('tbody tr').forEach(tr => {
-                    const cells = tr.querySelectorAll('td');
-                    if (cells.length >= 4) {
-                        rows.push({
-                            name: cells[0]?.textContent?.trim() || '',
-                            applyType: cells[1]?.textContent?.trim() || '',
-                            status: cells[2]?.textContent?.trim() || cells[3]?.textContent?.trim() || '',
-                            updateDate: cells[6]?.textContent?.trim() || cells[5]?.textContent?.trim() || '',
-                            acceptDate: cells[7]?.textContent?.trim() || cells[4]?.textContent?.trim() || ''
+            # 分4页抓取
+            for pn in range(1, 5):
+                try:
+                    if pn > 1:
+                        page.evaluate(f'showData({pn})')
+                        page.wait_for_timeout(2000)
+                    
+                    rows = page.evaluate('''() => {
+                        const result = [];
+                        document.querySelectorAll('table tbody tr').forEach(tr => {
+                            const cells = tr.querySelectorAll('td');
+                            if (cells.length >= 5) {
+                                result.push({
+                                    name: cells[1]?.textContent?.trim() || '',
+                                    applyType: cells[3]?.textContent?.trim() || '',
+                                    status: cells[5]?.textContent?.trim() || cells[6]?.textContent?.trim() || '',
+                                    updateDate: cells[7]?.textContent?.trim() || '',
+                                    acceptDate: cells[8]?.textContent?.trim() || cells[9]?.textContent?.trim() || ''
+                                });
+                            }
                         });
-                    }
-                });
-                return {headers, rows};
-            }''')
-            
-            if isinstance(rows, dict) and 'rows' in rows:
-                results = rows['rows']
-                print(f"  SSE headers: {rows.get('headers', [])[:5]}...", file=sys.stderr)
-            
-            # 如果直接提取失败，尝试翻页
-            if not results:
-                for pn in range(1, 5):
-                    try:
-                        # 点击翻页
-                        page.evaluate(f'showData({pn})') if pn > 1 else None
-                        page.wait_for_timeout(1000)
-                        data = page.evaluate('''() => {
-                            const rows = [];
-                            document.querySelectorAll('tbody tr').forEach(tr => {
-                                const cells = tr.querySelectorAll('td');
-                                if (cells.length >= 4) {
-                                    rows.push({
-                                        name: cells[0]?.textContent?.trim() || '',
-                                        applyType: cells[1]?.textContent?.trim() || '',
-                                        status: cells[2]?.textContent?.trim() || cells[3]?.textContent?.trim() || '',
-                                        updateDate: cells[6]?.textContent?.trim() || cells[5]?.textContent?.trim() || '',
-                                        acceptDate: cells[7]?.textContent?.trim() || cells[4]?.textContent?.trim() || ''
-                                    });
-                                }
-                            });
-                            return rows;
-                        }''')
-                        if data: results.extend(data)
-                    except Exception as e:
-                        print(f"  SSE page {pn} error: {e}", file=sys.stderr)
+                        return result;
+                    }''')
+                    if rows:
+                        results.extend(rows)
+                        print(f"  SSE page {pn}: {len(rows)} rows", file=sys.stderr)
+                except Exception as e:
+                    print(f"  SSE page {pn} error: {e}", file=sys.stderr)
         except Exception as e:
-            print(f"  SSE navigation error: {e}", file=sys.stderr)
+            print(f"  SSE error: {e}", file=sys.stderr)
         finally:
             browser.close()
 
-    # 去重
     seen = set()
     unique = []
     for item in results:
@@ -120,7 +95,7 @@ def fetch_sse():
             seen.add(key)
             unique.append(item)
     
-    print(f"  SSE extracted {len(results)} rows, {len(unique)} unique", file=sys.stderr)
+    print(f"  SSE total {len(results)} rows, {len(unique)} unique", file=sys.stderr)
     return unique
 
 # ── 匹配 ────────────────────────────────────────
